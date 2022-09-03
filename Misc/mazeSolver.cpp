@@ -61,6 +61,8 @@ bool findPath(int maze[][20], int n, int x, int y, int path[][20])
         return true;
     }
 
+    path[x][y] = 0;
+
     return false;
 }
 
