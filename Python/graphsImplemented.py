@@ -5,6 +5,16 @@ class Graph:
     def addEdge(self,v1,v2):
         self.adjMatrix[v1][v2]=1
         self.adjMatrix[v2][v1]=1
+    
+    def __dfsHelper(self,sv,visited):
+        print(sv,end=" ")
+        visited[sv]=True
+        for i in range(self.nVertices):
+            if (self.adjMatrix[sv][i]>0 and visited[i] is False):
+                self.__dfsHelper(i,visited)
+    def dfs(self):
+        visited = [False for i in range(self.nVertices)]
+        self.__dfsHelper(0,visited)
     def removeEdge(self,v1,v2):
         if self.containsEdge(v1,v2) is False:
             return 
@@ -21,8 +31,9 @@ def main():
     g.addEdge(0,1)
     g.addEdge(1,3)
     g.addEdge(2,4)
-
-    print(g)
+    g.addEdge(2,3)
+    g.addEdge(0,2)
+    g.dfs()
 
 
 
