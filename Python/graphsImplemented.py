@@ -15,6 +15,23 @@ class Graph:
     def dfs(self):
         visited = [False for i in range(self.nVertices)]
         self.__dfsHelper(0,visited)
+        print()
+
+    def __bfsHelper(self,sv,visited):
+        q=[sv]
+        visited[sv]=True
+        while q:
+            vertex = q.pop(0)
+            print(vertex,end=" ")
+            for i in range(self.nVertices):
+                if (self.adjMatrix[vertex][i]>0 and visited[i] is False):
+                    q.append(i)
+                    visited[i]=True
+    def bfs(self):
+        visited = [False for i in range(self.nVertices)]
+        self.__bfsHelper(0,visited)
+        print()
+
     def removeEdge(self,v1,v2):
         if self.containsEdge(v1,v2) is False:
             return 
@@ -27,13 +44,16 @@ class Graph:
 
 
 def main():
-    g = Graph(5)
+    g = Graph(7)
     g.addEdge(0,1)
-    g.addEdge(1,3)
-    g.addEdge(2,4)
-    g.addEdge(2,3)
     g.addEdge(0,2)
+    g.addEdge(1,3)
+    g.addEdge(1,4)
+    g.addEdge(4,5)
+    g.addEdge(5,6)
+    g.addEdge(2,6)
     g.dfs()
+    g.bfs()
 
 
 
